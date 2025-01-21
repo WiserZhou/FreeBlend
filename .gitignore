@@ -1,0 +1,16 @@
+clip/
+__pycache__
+models/__pycache__/
+yolov5s.pt
+out*
+!outputs.py
+huggingface_models/
+generate/
+gene_*
+wandb/
+pretrained/
+generated_images/
+z_logs/
+attn_maps
+*.log
+qit-sync.sh

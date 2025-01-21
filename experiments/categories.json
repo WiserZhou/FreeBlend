@@ -1,0 +1,78 @@
+{
+    "categories": {
+        "plants": [
+            "lavender",
+            "rose",
+            "lemon"
+        ],
+        "animals": {
+            "mammals": [
+                "cat",
+                "cattle",
+                "dog",
+                "squirrel"
+            ],
+            "aquatic_animals": [
+                "fish",
+                "shark"
+            ],
+            "birds": [
+                "bird"
+            ]
+        },
+        "transportation": {
+            "air_transport": [
+                "airplane"
+            ],
+            "land_transport": [
+                "bicycle",
+                "car"
+            ],
+            "water_transport": [
+                "ship"
+            ]
+        },
+        "objects": {
+            "furniture": [
+                "chair",
+                "desk"
+            ],
+            "electronics": [
+                "phone",
+                "robot",
+                "lamp"
+            ],
+            "decor": [
+                "rose"
+            ]
+        },
+        "natural_elements": [
+            "water"
+        ],
+        "adjectives": [
+            "black"
+        ]
+    },
+    "all_categories_list": [
+        "airplane",
+        "bicycle",
+        "bird",
+        "car",
+        "cat",
+        "cattle",
+        "chair",
+        "desk",
+        "dog",
+        "fish",
+        "squirrel",
+        "phone",
+        "robot",
+        "rose",
+        "shark",
+        "ship",
+        "lavender",
+        "lemon",
+        "water",
+        "lamp"
+    ]
+}

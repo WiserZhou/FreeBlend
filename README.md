@@ -13,17 +13,13 @@ To set up the environment for this project, follow these steps:
 3. **Install required packages** using pip:
     ```bash
     pip install diffusers==0.31.0
-    pip install torch torchvision transformers compel accelerate gpustat matplotlib open-clip-torch clint pycuda einops spacy scipy scikit-learn addict supervision yapf pycocotools jupyter ipywidgets
+    pip install torch torchvision transformers compel accelerate gpustat matplotlib open-clip-torch clint pycuda einops spacy scipy scikit-learn addict supervision yapf pycocotools jupyter ipywidgets torchmetrics
     ```
 4. **Download required models** using the provided scripts:
     - **For model generation**:
         ```bash
         ./download.sh stabilityai/stable-diffusion-2-1
         ./download.sh stabilityai/stable-diffusion-2-1-unclip
-        ```
-    - **For Attend&Excite**:
-        ```bash
-        ./download.sh CompVis/stable-diffusion-v1-4
         ```
     - **For HPS**:
         ```bash
@@ -37,28 +33,44 @@ To set up the environment for this project, follow these steps:
         ```bash
         ./download.sh IDEA-Research/grounding-dino-tiny
         ```
-5. **Create generate directory in parent folder**:
+5. **Quick start with jupyter notebook**:
+    ```bash
+    # Start jupyter notebook
+    jupyter notebook
+    ```
+    Navigate to and run `stage_unclip.ipynb` to test the functionality.
+
+6. **Create generate directory in parent folder**:
     ```bash
     cd ..
     mkdir -p generate
     ```
-6. **Create subdirectories**:
+7. **Create subdirectories**:
     ```bash
     mkdir -p generate/output_blend
     mkdir -p generate/output_original_image
     cd blend_concept
     ```
 
-7. **Generate original images**:
+8. **Generate original images**:
     ```bash
+    # Generate original images with specified parameters
     nohup python generate_original.py \
-        --gpu_index 5 \
+        --gpu_index 0 \
         --num_steps 25 \
         --guidance_scale 7.5 \
         --output_dir "../generate/output_original_image" > out_original.log 2>&1 &
     ```
 
-8. **Generate blend images**:
+    **Note**: If you encounter the error `undefined symbol: __nvJitLinkComplete_12_4, version libnvJitLink.so.12`:
+    - Option 1: Reinstall torch and torchvision packages
+    - Option 2: Set LD_LIBRARY_PATH:
+    ```bash
+    export LD_LIBRARY_PATH=/home/user/miniconda3/envs/Z/lib/python3.10/site-packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH
+    ```
+    For more details, see: https://github.com/pytorch/pytorch/issues/131312
+
+9. **Generate blend images and compute metrics**:
     ```bash
     number_loop=30
     num_steps=25
@@ -72,11 +84,16 @@ To set up the environment for this project, follow these steps:
                 --original_images_dir $original_images_dir"
 
     nohup python generate_blend.py $common_params --model_type stage_unclip \
-        --text_embeding None --gpu_index 1 \
+        --text_embeding None --gpu_index 0 \
         --avg_img 0 \
         --output_dir "../generate/output_blend/blend" \
         --interpolation_type decline > out_blend_decline.log 2>&1 &
     ```
 
-# blend_concept_2
-# blend_concept_2
+10. **Compute metrics**:
+    ```bash
+    nohup python metric.py \
+    --original_image_dir ../generate/output_original_image \
+    --mixed_image_dir    ../generate/output_blend/blend_None_stage_unclip_unet_decline \
+    --gpu_id 0 > out_metric.log 2>&1 &
+    ```
