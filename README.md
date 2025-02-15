@@ -1,4 +1,17 @@
-# Environment Setup
+# FreeBlend: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion
+
+<div align="center">
+
+[![a](https://img.shields.io/badge/Website-FreeBlend-blue)](https://petershen-csworld.github.io/FreeBlend/)
+[![arXiv](https://img.shields.io/badge/arXiv-2502.05606-red)](https://arxiv.org/abs/2502.05606)
+</div>
+
+> #### [**FreeBlend**: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion](https://arxiv.org/abs/2502.05606)
+> ##### [Yufan Zhou*](https://wiserzhou.github.io/), [Haoyu Shen*](https://github.com/), [Huan Wang](https://huanwang.tech/) ("*" denotes equal contribution)
+
+
+
+## Environment Setup
 
 To set up the environment for this project, follow these steps:
 
@@ -94,3 +107,18 @@ To set up the environment for this project, follow these steps:
     --mixed_image_dir    ../generate/output_blend/blend_None_stage_unclip_unet_decline \
     --gpu_id 0 > out_metric.log 2>&1 &
     ```
+
+## Citation
+
+```
+@article{zhou2025freeblend,
+  title={FreeBlend: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion},
+  author={Zhou, Yufan and Shen, Haoyu and Wang, Huan},
+  journal={arXiv preprint arXiv:2502.05606},
+  year={2025}
+}
+```
+
+## Acknowledgement
+
+We appreciate the authors of [HPSv2](https://github.com/tgxs002/HPSv2), [CLIP-IQA](https://github.com/IceClear/CLIP-IQA), [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO), [Stable Diffusion](https://huggingface.co/stabilityai/stable-diffusion-2-1-unclip), and [MagicMix](https://github.com/daspartho/MagicMix) to share their code.
