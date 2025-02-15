@@ -4,11 +4,11 @@ To set up the environment for this project, follow these steps:
 
 1. **Create a new conda environment** with Python 3.10.15:
     ```bash
-    conda create --name Z python=3.10.15
+    conda create --name FreeBlend python=3.10.15
     ```
 2. **Activate the environment**:
     ```bash
-    conda activate Z
+    conda activate FreeBlend
     ```
 3. **Install required packages** using pip:
     ```bash
@@ -34,10 +34,7 @@ To set up the environment for this project, follow these steps:
         ./download.sh IDEA-Research/grounding-dino-tiny
         ```
 5. **Quick start with jupyter notebook**:
-    ```bash
-    # Start jupyter notebook
-    jupyter notebook
-    ```
+
     Navigate to and run `stage_unclip.ipynb` to test the functionality.
 
 6. **Create generate directory in parent folder**:
