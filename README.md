@@ -8,8 +8,21 @@
 
 > #### [**FreeBlend**: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion](https://arxiv.org/abs/2502.05606)
 > ##### [Yufan Zhou*](https://wiserzhou.github.io/), [Haoyu Shen*](https://github.com/), [Huan Wang](https://huanwang.tech/) ("*" denotes equal contribution)
+## 📖 Paper Teaser
 
-## Environment Setup
+<!-- Teaser Image -->
+<div align="center" style="margin-top: 20px;">
+  <img src="assets/Teaser.png" alt="FreeBlend Teaser" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+</div>
+
+<div align="center" style="margin-top: 15px;">
+  <p style="font-size: 12px; font-weight: 500; color: #444;">
+        We introduce <strong>FreeBlend</strong>, a novel, training-free approach that effectively blends concepts to generate new objects through feedback interpolation and auxiliary inference. FreeBlend consistently produces visually             coherent and harmonious blends, setting a new benchmark for state-of-the-art blending techniques. 
+  </p>
+</div>
+
+ 
+## ⚙ Environment Setup
 
 To set up the environment for this project, follow these steps:
 
@@ -44,42 +57,50 @@ To set up the environment for this project, follow these steps:
         ```bash
         ./download.sh IDEA-Research/grounding-dino-tiny
         ```
-5. **Quick start with jupyter notebook**:
+
+## 🧭 **Quick start**:
 
     Navigate to and run `stage_unclip.ipynb` to test the functionality.
 
-6. **Create generate directory in parent folder**:
-    ```bash
-    cd ..
-    mkdir -p generate
-    ```
-7. **Create subdirectories**:
-    ```bash
-    mkdir -p generate/output_blend
-    mkdir -p generate/output_original_image
-    cd blend_concept
-    ```
+## 🧪 Reproduction
 
-8. **Generate original images**:
-    ```bash
+ **Create generate directory in parent folder**:
+```bash
+    cd .. 
+    mkdir -p generate 
+```
+
+    
+ **Create subdirectories**:
+```bash
+    mkdir -p generate/output_blend 
+    mkdir -p generate/output_original_image 
+    cd blend_concept
+```
+
+
+
+ **Generate original images**:
+```bash
     # Generate original images with specified parameters
     nohup python generate_original.py \
         --gpu_index 0 \
         --num_steps 25 \
         --guidance_scale 7.5 \
         --output_dir "../generate/output_original_image" > out_original.log 2>&1 &
-    ```
-
+```
     **Note**: If you encounter the error `undefined symbol: __nvJitLinkComplete_12_4, version libnvJitLink.so.12`:
     - Option 1: Reinstall torch and torchvision packages
     - Option 2: Set LD_LIBRARY_PATH:
-    ```bash
+```bash
     export LD_LIBRARY_PATH=/home/user/miniconda3/envs/Z/lib/python3.10/site-packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH
-    ```
+```
     For more details, see: https://github.com/pytorch/pytorch/issues/131312
 
-9. **Generate blend images and compute metrics**:
-    ```bash
+
+    
+ **Generate blend images and compute metrics**:
+```bash
     number_loop=30
     num_steps=25
     guidance_scale=7.5
@@ -96,17 +117,20 @@ To set up the environment for this project, follow these steps:
         --avg_img 0 \
         --output_dir "../generate/output_blend/blend" \
         --interpolation_type decline > out_blend_decline.log 2>&1 &
-    ```
+```
 
-10. **Compute metrics**:
-    ```bash
+ **Compute metrics**: 
+ ```bash
     nohup python metric.py \
     --original_image_dir ../generate/output_original_image \
     --mixed_image_dir    ../generate/output_blend/blend_None_stage_unclip_unet_decline \
     --gpu_id 0 > out_metric.log 2>&1 &
-    ```
+ ```
+---
 
-## Citation
+## 📌 Citation
+
+If you find our work helpful, please consider citing our paper:
 
 ```
 @article{zhou2025freeblend,
@@ -116,6 +140,7 @@ To set up the environment for this project, follow these steps:
   year={2025}
 }
 ```
+
 
 ## Acknowledgement
 
