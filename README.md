@@ -12,7 +12,7 @@
 
 <!-- Teaser Image -->
 <div align="center" style="margin-top: 20px;">
-  <img src="assets/Teaser.png" alt="FreeBlend Teaser" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <img src="assets/Teaser.jpg" alt="FreeBlend Teaser" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
 </div>
 
 <div align="center" style="margin-top: 15px;">
