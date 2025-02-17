@@ -6,14 +6,13 @@
 [![arXiv](https://img.shields.io/badge/arXiv-2502.05606-red)](https://arxiv.org/abs/2502.05606)
 </div>
 
-<div style="text-align:center;">
-  <iframe src="imgs/teaser_final.pdf" width="600" height="400"></iframe>
-</div>
+<p align="center">
+  <embed src="imgs/teaser_final.pdf" type="application/pdf" width="600" height="400">
+</p>
+
 
 > #### [**FreeBlend**: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion](https://arxiv.org/abs/2502.05606)
 > ##### [Yufan Zhou*](https://wiserzhou.github.io/), [Haoyu Shen*](https://github.com/), [Huan Wang](https://huanwang.tech/) ("*" denotes equal contribution)
-
-
 
 ## Environment Setup
 
