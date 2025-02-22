@@ -64,6 +64,10 @@ To set up the environment for this project, follow these steps:
 
 ## 🧪 Reproduction
 
+**Demo images** 
+
+Most of the displayed demo images are created from the base images in `display.zip`. For optimal image quality, we also recommend using custom aesthetic images to enhance the final output.
+
  **Create generate directory in parent folder**:
 ```bash
     cd .. 
