@@ -103,7 +103,7 @@ def calculate_hps(mixed_image_dir, mix_categories_to_show, gpu_id=0):
         std_count = np.std(object_counts)
         mix_object_counts.append((mix_category, mean_count, std_count))
         print(f"{mix_category} - Mean HPS Count: {mean_count}, Std: {std_count}")
-        # 不再逐步记录，而是在后面统一处理
+
 
     # Calculate overall mean and std deviation
     overall_mean_count = np.mean([mean for _, mean, _ in mix_object_counts])
@@ -185,8 +185,7 @@ def calculate_CLIP_IQA(mixed_image_dir, mix_categories_to_show):
         std_mixed = np.std(mixed_scores)
         mean_blending = np.mean(blending_scores)
         std_blending = np.std(blending_scores)
-        
-        # 计算总体平均分
+
         mean_count = (mean_mixed + mean_blending) / 2
         std_count = (std_mixed + std_blending) / 2
         

@@ -23,7 +23,7 @@ def process_image(image_path, text, device, model_id = "./pretrained/grounding-d
     
     scores = results[0]['scores']
     
-    if scores.numel() > 0:  # 确保有元素
+    if scores.numel() > 0: 
         average_score = torch.mean(scores).item()
     else:
         average_score = 0

@@ -3,7 +3,6 @@ from glob import glob
 import json
 import itertools
 
-# 从文件读取 JSON 数据
 def load_json_data(file_path):
     """
     Load JSON data from a file.
@@ -22,7 +21,6 @@ def load_json_data(file_path):
         print(f"Error: Failed to decode the JSON data in {file_path}.")
         return None
 
-# 获取所有类（类别）
 def get_all_categories(file_path = None):
     """
     Read the JSON file and return a list of all categories from 'all_categories_list'.
@@ -39,7 +37,6 @@ def get_all_categories(file_path = None):
     else:
         return []
 
-# 获取所有混合类（C20, 2 的组合）
 def get_mix_categories(file_path=None):
     """
     Read the JSON file and return a list of mixed categories (pairs of categories).

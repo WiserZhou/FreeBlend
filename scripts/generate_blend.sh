@@ -5,7 +5,7 @@ number_loop=30
 num_steps=25
 guidance_scale=7.5
 categories_file="experiments/categories.json"
-original_images_dir="/home/hwang/Projects/generate/output_original_image"
+original_images_dir="/path/generate/output_original_image"
 
 common_params="--number_loop $number_loop --num_steps $num_steps \
             --guidance_scale $guidance_scale \

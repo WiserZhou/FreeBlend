@@ -39,24 +39,14 @@ def get_unique_filename(base_path, base_name, extension='.png'):
             return full_path
         counter += 1
 
-# -------------------- 设备和管道设置 --------------------
-
 def setup_device(gpu_index: int) -> torch.device:
-    """
-    设置计算设备。
-
-    Args:
-        gpu_index (int): 要使用的GPU索引。设置为-1使用CPU。
-
-    Returns:
-        torch.device: 计算设备。
-    """
+ 
     if gpu_index >= 0 and torch.cuda.is_available():
         device = torch.device(f"cuda:{gpu_index}")
-        # print(f"使用GPU: {gpu_index}")
+
     else:
         device = torch.device("cpu")
-        # print("使用CPU")
+
     return device
 
 # Get image paths for a given category
@@ -83,9 +73,8 @@ def define_prompt(category, category2=None):
 def change_UNet(pipeline, gpu_id):
     
     device = setup_device(gpu_id)
-    
-    # 优化UNet模型
+
     custom_unet = CustomUNet2DConditionModel(**pipeline.unet.config).to(device)
     custom_unet.load_state_dict(pipeline.unet.state_dict())
     custom_unet = custom_unet.to(dtype=torch.float32) 
-    pipeline.unet = custom_unet.eval()  # 设置为评估模式
+    pipeline.unet = custom_unet.eval()

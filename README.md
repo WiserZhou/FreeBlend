@@ -1,109 +1,88 @@
-# FreeBlend: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion
+# Staged Feedback-Driven Interpolation Diffusion for Concept Blending
 
-<div align="center">
-
-[![a](https://img.shields.io/badge/Website-FreeBlend-blue)](https://petershen-csworld.github.io/FreeBlend/)
-[![arXiv](https://img.shields.io/badge/arXiv-2502.05606-red)](https://arxiv.org/abs/2502.05606)
-</div>
-
-> #### [**FreeBlend**: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion](https://arxiv.org/abs/2502.05606)
-> ##### [Yufan Zhou*](https://wiserzhou.github.io/), [Haoyu Shen*](https://github.com/), [Huan Wang](https://huanwang.tech/) ("*" denotes equal contribution)
-## 📖 Paper Teaser
-
-<!-- Teaser Image -->
-<div align="center" style="margin-top: 20px;">
-  <img src="assets/Teaser.jpg" alt="FreeBlend Teaser" width="80%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-</div>
-
-<div align="center" style="margin-top: 15px;">
-  <p style="font-size: 12px; font-weight: 500; color: #444;">
-        We introduce <strong>FreeBlend</strong>, a novel, training-free approach that effectively blends concepts to generate new objects through feedback interpolation and auxiliary inference. FreeBlend consistently produces visually             coherent and harmonious blends, setting a new benchmark for state-of-the-art blending techniques. 
-  </p>
-</div>
-
- 
 ## ⚙ Environment Setup
 
 To set up the environment for this project, follow these steps:
 
 1. **Create a new conda environment** with Python 3.10.15:
+
     ```bash
     conda create --name FreeBlend python=3.10.15
     ```
+
 2. **Activate the environment**:
+
     ```bash
     conda activate FreeBlend
     ```
+
 3. **Install required packages** using pip:
+
     ```bash
     pip install diffusers==0.31.0
     pip install torch torchvision transformers compel accelerate gpustat matplotlib open-clip-torch clint pycuda einops spacy scipy scikit-learn addict supervision yapf pycocotools jupyter ipywidgets torchmetrics
     ```
+
 4. **Download required models** using the provided scripts:
     - **For model generation**:
+
         ```bash
         ./download.sh stabilityai/stable-diffusion-2-1
         ./download.sh stabilityai/stable-diffusion-2-1-unclip
         ```
+
     - **For HPS**:
+
         ```bash
         ./download.sh laion/CLIP-ViT-H-14-laion2B-s32B-b79K
         ```
+
     - **For CLIP-IQA**:
+
         ```bash
         ./download.sh openai/clip-vit-base-patch32
         ```
+
     - **For DINO**:
+
         ```bash
         ./download.sh IDEA-Research/grounding-dino-tiny
         ```
 
-## 🧭 **Quick start**:
+## 🧭 **Quick start**
 
     Navigate to and run `stage_unclip.ipynb` to test the functionality.
 
 ## 🧪 Reproduction
 
-**Demo images** 
-
-Most of the displayed demo images are created from the base images in `display.zip`. For optimal image quality, we also recommend using custom aesthetic images to enhance the final output.
-
  **Create generate directory in parent folder**:
+
 ```bash
     cd .. 
     mkdir -p generate 
 ```
 
-    
  **Create subdirectories**:
+
 ```bash
     mkdir -p generate/output_blend 
     mkdir -p generate/output_original_image 
     cd blend_concept
 ```
 
-
-
  **Generate original images**:
+
 ```bash
-    # Generate original images with specified parameters
+
     nohup python generate_original.py \
         --gpu_index 0 \
         --num_steps 25 \
         --guidance_scale 7.5 \
         --output_dir "../generate/output_original_image" > out_original.log 2>&1 &
 ```
-    **Note**: If you encounter the error `undefined symbol: __nvJitLinkComplete_12_4, version libnvJitLink.so.12`:
-    - Option 1: Reinstall torch and torchvision packages
-    - Option 2: Set LD_LIBRARY_PATH:
-```bash
-    export LD_LIBRARY_PATH=/home/user/miniconda3/envs/Z/lib/python3.10/site-packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH
-```
-    For more details, see: https://github.com/pytorch/pytorch/issues/131312
 
-
-    
  **Generate blend images and compute metrics**:
+
 ```bash
     number_loop=30
     num_steps=25
@@ -123,29 +102,13 @@ Most of the displayed demo images are created from the base images in `display.z
         --interpolation_type decline > out_blend_decline.log 2>&1 &
 ```
 
- **Compute metrics**: 
+ **Compute metrics**:
+
  ```bash
     nohup python metric.py \
     --original_image_dir ../generate/output_original_image \
     --mixed_image_dir    ../generate/output_blend/blend_None_stage_unclip_unet_decline \
     --gpu_id 0 > out_metric.log 2>&1 &
  ```
+
 ---
-
-## 📌 Citation
-
-If you find our work helpful, please consider citing our paper:
-
-```
-@article{zhou2025freeblend,
-  title={FreeBlend: Advancing Concept Blending with Staged Feedback-Driven Interpolation Diffusion},
-  author={Zhou, Yufan and Shen, Haoyu and Wang, Huan},
-  journal={arXiv preprint arXiv:2502.05606},
-  year={2025}
-}
-```
-
-
-## Acknowledgement
-
-We appreciate the authors of [HPSv2](https://github.com/tgxs002/HPSv2), [CLIP-IQA](https://github.com/IceClear/CLIP-IQA), [GroundingDINO](https://github.com/IDEA-Research/GroundingDINO), [Stable Diffusion](https://huggingface.co/stabilityai/stable-diffusion-2-1-unclip), and [MagicMix](https://github.com/daspartho/MagicMix) to share their code.

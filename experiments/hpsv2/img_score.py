@@ -131,9 +131,6 @@ if __name__ == '__main__':
     parser.add_argument('--checkpoint', type=str, default=os.path.join(root_path,'HPS_v2_compressed.pt'), help='Path to the model checkpoint')
 
     args = parser.parse_args()
-    
-    # imgs_path 可以是由相同提示词生成的多张图片的路径列表
-    # 或者是字符串类型的单个图片路径
-    # 或者是 PIL.Image.Image 类型的图片对象
+
     hps_score = score(args.image_path, args.prompt, args.checkpoint)
     print('HPSv2 score:', hps_score)

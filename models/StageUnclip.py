@@ -722,7 +722,7 @@ class StageStableUnCLIPImg2ImgPipeline(
                 [`~ pipeline_utils.ImagePipelineOutput`] if `return_dict` is True, otherwise a `tuple`. When returning
                 a tuple, the first element is a list with the generated images.
         """
-        # 如果参数为 None，则初始化为空列表
+
         if image_list is None:
             image_list = []
         if prompt_list is None:
@@ -745,11 +745,9 @@ class StageStableUnCLIPImg2ImgPipeline(
         if image_2 != None:
             image_list.append(image_2)
 
-        # 获取最长列表的长度
         max_len = max(len(image_list), len(prompt_list), len(negative_prompt_list), 
                     len(prompt_embeds_list), len(negative_prompt_embeds_list), len(image_embeds_list))
 
-        # 补充 None 到各个列表，使其长度等于 max_len
         image_list.extend([None] * (max_len - len(image_list)))
         prompt_list.extend([None] * (max_len - len(prompt_list)))
         negative_prompt_list.extend([None] * (max_len - len(negative_prompt_list)))
@@ -989,7 +987,7 @@ class StageStableUnCLIPImg2ImgPipeline(
 
             # Apply classifier-free guidance, if enabled
             if do_classifier_free_guidance:
-                noise_pred_uncond, noise_pred_text = noise_pred.chunk(2) # chunk将一个tensor平均分割两个tensor
+                noise_pred_uncond, noise_pred_text = noise_pred.chunk(2) 
                 noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
                 
                 if num_inference_steps * t_start <= i <= num_inference_steps * t_end:
